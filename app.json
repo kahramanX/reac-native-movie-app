@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "reac-native-movie-app",
-    "slug": "reac-native-movie-app",
+    "slug": "react-native-movie-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "943c5fde-fec3-4049-97db-63411186a53f"
+      }
+    },
+    "owner": "holmesx"
   }
 }
