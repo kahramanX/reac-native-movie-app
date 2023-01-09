@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import React, { useState, useEffect } from "react";
 
 export default function FavoritesScreen() {
@@ -15,17 +15,11 @@ export default function FavoritesScreen() {
       textAlign: "center",
       paddingTop: 28,
     },
-    input: {
-      borderWidth: 1,
-      borderRadius: 4,
-      backgroundColor: "#ffffff",
-      padding: 14,
-      marginBottom: 28,
-    },
   });
   return (
-    <View>
-      <Text>FavoriteScreen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>My Favorite Movies</Text>
+      <Text style={{ color: "white" }}>test</Text>
+    </SafeAreaView>
   );
 }
