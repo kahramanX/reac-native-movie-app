@@ -8,9 +8,14 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFavoriteMovieID } from "./store/actionSlice";
+import { setFavoriteMovieID, removeFavoriteMovieID } from "./store/actionSlice";
 
-export default function MovieCard({ title, imgUrl, movieID }) {
+export default function MovieCard({
+  title,
+  imgUrl,
+  movieID,
+  buttonMode = "normal",
+}) {
   const dispatch = useDispatch();
   const { movieIDStore } = useSelector((state) => state.actionSlice);
 
@@ -77,61 +82,61 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       </Text>
 
       <View>
-        {movieIDStore?.map((moviIdFromRedux) => {
-          return moviIdFromRedux == movieID ? (
-            <TouchableHighlight
-              style={styles.removeButton}
-              onPress={() => {
-                Alert.alert(
-                  "Do you want add to remove this movie from favorites?",
-                  `Movie ID: ${movieID}`,
-                  [
-                    {
-                      text: "Cancel",
-                      onPress: () => console.log("Cancel Pressed"),
+        {buttonMode == "normal" && (
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              Alert.alert(
+                "Do you want add to your favorites?",
+                `Movie ID: ${movieID}`,
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      console.log("selected : ", movieID);
+                      dispatch(setFavoriteMovieID(movieID));
+                      console.log("OK Pressed");
                     },
-                    {
-                      text: "OK",
-                      onPress: () => {
-                        console.log("selected : ", movieID);
-                        dispatch(setFavoriteMovieID(movieID));
-                        console.log("OK Pressed");
-                      },
+                  },
+                ]
+              );
+            }}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableHighlight>
+        )}
+
+        {buttonMode == "favoriteScreen" && (
+          <TouchableHighlight
+            style={styles.removeButton}
+            onPress={() => {
+              Alert.alert(
+                "Do you want to remove this movie from favorites?",
+                `Movie ID: ${movieID}`,
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      console.log("selected : ", movieID);
+                      dispatch(removeFavoriteMovieID(movieID));
+                      console.log("OK Pressed");
                     },
-                  ]
-                );
-              }}
-            >
-              <Text style={styles.removeButtonText}>Remove</Text>
-            </TouchableHighlight>
-          ) : (
-            <TouchableHighlight
-              style={styles.button}
-              onPress={() => {
-                Alert.alert(
-                  "Do you want add to your favorites?",
-                  `Movie ID: ${movieID}`,
-                  [
-                    {
-                      text: "Cancel",
-                      onPress: () => console.log("Cancel Pressed"),
-                    },
-                    {
-                      text: "OK",
-                      onPress: () => {
-                        console.log("selected : ", movieID);
-                        dispatch(setFavoriteMovieID(movieID));
-                        console.log("OK Pressed");
-                      },
-                    },
-                  ]
-                );
-              }}
-            >
-              <Text style={styles.buttonText}>Add</Text>
-            </TouchableHighlight>
-          );
-        })}
+                  },
+                ]
+              );
+            }}
+          >
+            <Text style={styles.removeButtonText}>Remove</Text>
+          </TouchableHighlight>
+        )}
       </View>
     </View>
   );

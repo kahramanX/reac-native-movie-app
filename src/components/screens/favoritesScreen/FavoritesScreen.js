@@ -51,6 +51,7 @@ export default function FavoritesScreen() {
               movieID={item.id}
               title={item.original_title}
               imgUrl={item.poster_path}
+              buttonMode={"favoriteScreen"}
             />
           );
         }}
