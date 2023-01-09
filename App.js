@@ -34,7 +34,7 @@ export default function App() {
             options={{ title: "Search" }}
           />
           <Stack.Screen
-            name="favorites"
+            name="FavoritesScreen"
             component={FavoritesScreen}
             options={{ title: "My Favorites" }}
           />
