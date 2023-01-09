@@ -1,9 +1,7 @@
 import { StyleSheet, Text, SafeAreaView, View } from "react-native";
 import { useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Header from "./src/components/layouts/Header";
 import Footer from "./src/components/layouts/Footer";
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./src/components/screens/homeScreen/HomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,6 +13,7 @@ export default function App() {
     container: {
       width: "100%",
       height: "100%",
+      backgroundColor: "#000000",
     },
   });
 
