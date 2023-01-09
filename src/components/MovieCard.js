@@ -17,6 +17,8 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       width: 160,
       marginHorizontal: 8,
       borderRadius: 4,
+      flexDirection: "column",
+      justifyContent: "space-between",
     },
     image: { resizeMode: "cover" },
     text: {
