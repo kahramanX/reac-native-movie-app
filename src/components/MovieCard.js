@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  Alert,
+} from "react-native";
 import React from "react";
 
 export default function MovieCard({ title, imgUrl, movieID }) {
@@ -8,13 +15,30 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       borderWidth: 1,
       borderColor: "#ffff",
       width: 160,
+      marginHorizontal: 8,
+      borderRadius: 4,
+      flexDirection: "column",
+      justifyContent: "space-between",
     },
     image: { resizeMode: "cover" },
     text: {
       color: "#ffffff",
-      fontWeight: "400",
+      fontWeight: "500",
       width: 140,
       marginTop: 4,
+    },
+    button: {
+      backgroundColor: "#db0000",
+      color: "#fffff",
+      width: "100%",
+      padding: 8,
+      borderRadius: 4,
+      marginTop: 8,
+      alignItems: "center",
+    },
+    buttonText: {
+      fontWeight: "800",
+      color: "#ffffff",
     },
   });
 
@@ -23,14 +47,34 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       <Image
         style={styles.image}
         source={{
-          uri: `https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg`,
+          uri: `https://image.tmdb.org/t/p/original/${imgUrl}`,
           width: "100%",
           height: 200,
         }}
+        fadeDuration={250}
       />
       <Text numberOfLines={2} style={styles.text}>
-        MOVİE TITL dsad sads dsad s aasE LAN
+        {title}
       </Text>
+
+      <TouchableHighlight
+        style={styles.button}
+        onPress={() => {
+          Alert.alert(
+            "Do you want add to your favorites?",
+            `Movie ID: ${movieID}`,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+              },
+              { text: "OK", onPress: () => console.log("OK Pressed") },
+            ]
+          );
+        }}
+      >
+        <Text style={styles.buttonText}>Add</Text>
+      </TouchableHighlight>
     </View>
   );
 }
