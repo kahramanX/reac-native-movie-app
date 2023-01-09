@@ -34,6 +34,13 @@ function Footer() {
       </TouchableHighlight>
       <TouchableHighlight
         onPress={() => {
+          navigation.navigate("SearchScreen");
+        }}
+      >
+        <Text style={styles.footerTitle}>Search</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => {
           // navigation.navigate("FavoritesScreen");
         }}
       >

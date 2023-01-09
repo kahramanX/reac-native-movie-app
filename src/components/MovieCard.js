@@ -51,6 +51,7 @@ export default function MovieCard({ title, imgUrl, movieID }) {
           width: "100%",
           height: 200,
         }}
+        fadeDuration={250}
       />
       <Text numberOfLines={2} style={styles.text}>
         {title}
