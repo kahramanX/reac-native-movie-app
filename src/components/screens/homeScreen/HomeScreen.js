@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "../../MovieCard";
 
 export default function HomePage() {
@@ -37,7 +37,6 @@ export default function HomePage() {
         setGetPopularMovies(data.results);
       });
   }
-  _getPopularMoviesFromApı();
 
   function _getUpcomingMoviesFromApı() {
     fetch(
@@ -48,7 +47,6 @@ export default function HomePage() {
         setGetUpcomingMovies(data.results);
       });
   }
-  _getUpcomingMoviesFromApı();
 
   function _getTopRatedMoviesFromApı() {
     fetch(
@@ -59,7 +57,13 @@ export default function HomePage() {
         setGetTopRatedMovies(data.results);
       });
   }
-  _getTopRatedMoviesFromApı();
+
+  useEffect(() => {
+    console.log("ANASAYFADAAYIM");
+    _getTopRatedMoviesFromApı();
+    _getUpcomingMoviesFromApı();
+    _getPopularMoviesFromApı();
+  }, []);
 
   return (
     <ScrollView style={{ backgroundColor: "#000000", height: "100%" }}>
