@@ -10,7 +10,7 @@ export default function HomePage() {
     },
     movieSection: {
       padding: 6,
-      marginBottom: 22,
+      paddingTop: 28,
 
       title: {
         color: "#ffffff",
@@ -59,7 +59,6 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    console.log("ANASAYFADAAYIM");
     _getTopRatedMoviesFromApı();
     _getUpcomingMoviesFromApı();
     _getPopularMoviesFromApı();
