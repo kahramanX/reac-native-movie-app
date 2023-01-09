@@ -36,7 +36,7 @@ export default function SearchScreen() {
   const [movieQuery, setMovieQuery] = useState("");
   const [getSearchedMovies, setGetSearchedMovies] = useState();
 
-  function _getSearchedMovies() {
+  const _getSearchedMovies = () => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=9f2d1368e54e609b6d793560018b878a&query=${movieQuery}&page=1`
     )
@@ -44,7 +44,7 @@ export default function SearchScreen() {
       .then((data) => {
         setGetSearchedMovies(data.results);
       });
-  }
+  };
 
   useEffect(() => {
     _getSearchedMovies();
