@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  TouchableHighlight,
+  Alert,
+} from "react-native";
 import React from "react";
 
 export default function MovieCard({ title, imgUrl, movieID }) {
@@ -9,6 +17,7 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       borderColor: "#ffff",
       width: 160,
       marginHorizontal: 8,
+      borderRadius: 4,
     },
     image: { resizeMode: "cover" },
     text: {
@@ -16,6 +25,15 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       fontWeight: "400",
       width: 140,
       marginTop: 4,
+    },
+    button: {
+      backgroundColor: "#db0000",
+      color: "#fffff",
+      width: "100%",
+      padding: 8,
+      borderRadius: 4,
+      marginTop: 8,
+      alignItems: "center",
     },
   });
 
@@ -30,8 +48,24 @@ export default function MovieCard({ title, imgUrl, movieID }) {
         }}
       />
       <Text numberOfLines={2} style={styles.text}>
-        MOVİE TITL dsad sads dsad s aasE LAN
+        MOVİE TITe kanka aladın mıııfhduısa fdsuıaf ıdsa
       </Text>
+
+      <TouchableHighlight
+        style={styles.button}
+        onPress={() => {
+          Alert.alert("ewrwerwe", "mesage", [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel",
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") },
+          ]);
+        }}
+      >
+        <Text>Add</Text>
+      </TouchableHighlight>
     </View>
   );
 }
