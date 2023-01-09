@@ -7,6 +7,8 @@ function Footer() {
 
   const styles = StyleSheet.create({
     footerContainer: {
+      borderTopWidth: 1,
+      borderTopColor: "#db0000",
       flexDirection: "row",
       justifyContent: "space-around",
       padding: 15,
