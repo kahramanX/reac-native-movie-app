@@ -6,13 +6,13 @@ function Footer() {
   const navigation = useNavigation();
 
   const styles = StyleSheet.create({
-    headerContainer: {
+    footerContainer: {
       flexDirection: "row",
       justifyContent: "space-around",
       padding: 15,
       display: "flex",
     },
-    headerTitle: {
+    footerTitle: {
       fontSize: 18,
       fontWeight: "bold",
       color: "#db0000",
@@ -22,20 +22,20 @@ function Footer() {
   });
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.footerContainer}>
       <TouchableHighlight
         onPress={() => {
           navigation.navigate("HomeScreen");
         }}
       >
-        <Text style={styles.headerTitle}>Home</Text>
+        <Text style={styles.footerTitle}>Home</Text>
       </TouchableHighlight>
       <TouchableHighlight
         onPress={() => {
           // navigation.navigate("FavoritesScreen");
         }}
       >
-        <Text style={styles.headerTitle}>Favs</Text>
+        <Text style={styles.footerTitle}>Favs</Text>
       </TouchableHighlight>
     </View>
   );
