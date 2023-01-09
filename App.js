@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./src/components/screens/homeScreen/HomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SearchScreen from "./src/components/screens/searchScreen/SearchScreen";
+import FavoritesScreen from "./src/components/screens/favoritesScreen/FavoritesScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -32,16 +33,11 @@ export default function App() {
             component={SearchScreen}
             options={{ title: "Search" }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="favorites"
-            component={HomeScreen}
+            component={FavoritesScreen}
             options={{ title: "My Favorites" }}
           />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: "Movie" }}
-          /> */}
         </Stack.Navigator>
         <Footer />
       </SafeAreaView>

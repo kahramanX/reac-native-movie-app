@@ -41,7 +41,7 @@ function Footer() {
       </TouchableHighlight>
       <TouchableHighlight
         onPress={() => {
-          // navigation.navigate("FavoritesScreen");
+          navigation.navigate("FavoritesScreen");
         }}
       >
         <Text style={styles.footerTitle}>Favs</Text>
