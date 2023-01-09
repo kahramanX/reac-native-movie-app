@@ -1,8 +1,15 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieCard from "../../MovieCard";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
+  const { movieIDStore } = useSelector((state) => state.actionSlice);
+
+  useEffect(() => {
+    console.log("Eklenen moviler: ", movieIDStore);
+  }, [movieIDStore]);
+
   const styles = StyleSheet.create({
     container: {
       width: "100%",
@@ -28,7 +35,7 @@ export default function HomePage() {
   const [getUpcomingMovies, setGetUpcomingMovies] = useState();
   const [getTopRatedMovies, setGetTopRatedMovies] = useState();
 
-  function _getPopularMoviesFromApı() {
+  const _getPopularMoviesFromApı = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=9f2d1368e54e609b6d793560018b878a&language=en-US&page=1`
     )
@@ -36,9 +43,9 @@ export default function HomePage() {
       .then((data) => {
         setGetPopularMovies(data.results);
       });
-  }
+  };
 
-  function _getUpcomingMoviesFromApı() {
+  const _getUpcomingMoviesFromApı = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=9f2d1368e54e609b6d793560018b878a&language=en-US&page=1`
     )
@@ -46,9 +53,9 @@ export default function HomePage() {
       .then((data) => {
         setGetUpcomingMovies(data.results);
       });
-  }
+  };
 
-  function _getTopRatedMoviesFromApı() {
+  const _getTopRatedMoviesFromApı = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=9f2d1368e54e609b6d793560018b878a&language=en-US&page=1`
     )
@@ -56,12 +63,12 @@ export default function HomePage() {
       .then((data) => {
         setGetTopRatedMovies(data.results);
       });
-  }
+  };
 
   useEffect(() => {
-    _getTopRatedMoviesFromApı();
-    _getUpcomingMoviesFromApı();
     _getPopularMoviesFromApı();
+    _getUpcomingMoviesFromApı();
+    _getTopRatedMoviesFromApı();
   }, []);
 
   return (
