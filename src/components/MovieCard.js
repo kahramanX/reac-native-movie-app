@@ -54,11 +54,10 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       <TouchableHighlight
         style={styles.button}
         onPress={() => {
-          Alert.alert("ewrwerwe", "mesage", [
+          Alert.alert("Do you want add to your favorites?", "-", [
             {
               text: "Cancel",
               onPress: () => console.log("Cancel Pressed"),
-              style: "cancel",
             },
             { text: "OK", onPress: () => console.log("OK Pressed") },
           ]);
