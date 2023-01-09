@@ -8,6 +8,7 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       borderWidth: 1,
       borderColor: "#ffff",
       width: 160,
+      marginHorizontal: 8,
     },
     image: { resizeMode: "cover" },
     text: {

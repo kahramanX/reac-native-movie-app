@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import MovieCard from "../../MovieCard";
-import Carousel from "react-native-reanimated-carousel";
 
 export default function HomePage() {
   const styles = StyleSheet.create({
@@ -19,6 +18,9 @@ export default function HomePage() {
         fontWeight: "bold",
         marginBottom: 12,
       },
+      horizontalView: {
+        marginHorizontal: 8,
+      },
     },
   });
 
@@ -27,7 +29,17 @@ export default function HomePage() {
       <View style={styles.movieSection}>
         <Text style={styles.movieSection.title}>Popular Movies</Text>
         <View>
-          <MovieCard movieID={"2222"} title={"Movie Title"} imgUrl={"333"} />
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            style={styles.movieSection.horizontalView}
+          >
+            <MovieCard movieID={"2222"} title={"Movie Title"} imgUrl={"333"} />
+            <MovieCard movieID={"2222"} title={"Movie Title"} imgUrl={"333"} />
+            <MovieCard movieID={"2222"} title={"Movie Title"} imgUrl={"333"} />
+            <MovieCard movieID={"2222"} title={"Movie Title"} imgUrl={"333"} />
+          </ScrollView>
         </View>
       </View>
     </View>
