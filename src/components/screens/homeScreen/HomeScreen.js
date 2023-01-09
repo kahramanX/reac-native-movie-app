@@ -1,8 +1,15 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieCard from "../../MovieCard";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
+  const { movieIDStore } = useSelector((state) => state.actionSlice);
+
+  useEffect(() => {
+    console.log("Eklenen moviler: ", movieIDStore);
+  }, [movieIDStore]);
+
   const styles = StyleSheet.create({
     container: {
       width: "100%",

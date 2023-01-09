@@ -6,7 +6,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SearchScreen from "./src/components/screens/searchScreen/SearchScreen";
 import FavoritesScreen from "./src/components/screens/favoritesScreen/FavoritesScreen";
 import { Provider } from "react-redux";
-import { store } from "./src/components/redux/store";
+import { store } from "./src/components/store/store";
+import { registerRootComponent } from "expo";
+import * as React from "react";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -46,3 +48,5 @@ export default function App() {
     </Provider>
   );
 }
+
+registerRootComponent(App);

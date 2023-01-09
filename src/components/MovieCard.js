@@ -6,9 +6,13 @@ import {
   TouchableHighlight,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFavoriteMovieID } from "./store/actionSlice";
 
 export default function MovieCard({ title, imgUrl, movieID }) {
+  const dispatch = useDispatch();
+
   const styles = StyleSheet.create({
     container: {
       padding: 4,
@@ -68,7 +72,14 @@ export default function MovieCard({ title, imgUrl, movieID }) {
                 text: "Cancel",
                 onPress: () => console.log("Cancel Pressed"),
               },
-              { text: "OK", onPress: () => console.log("OK Pressed") },
+              {
+                text: "OK",
+                onPress: () => {
+                  console.log("selected : ", movieID);
+                  dispatch(setFavoriteMovieID(movieID));
+                  console.log("OK Pressed");
+                },
+              },
             ]
           );
         }}
