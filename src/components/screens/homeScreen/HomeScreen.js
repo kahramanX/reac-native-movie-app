@@ -10,6 +10,8 @@ export default function HomePage() {
     },
     movieSection: {
       padding: 6,
+      marginBottom: 22,
+
       title: {
         color: "#ffffff",
         fontSize: 28,
@@ -23,6 +25,7 @@ export default function HomePage() {
   });
 
   const [getPopularMovies, setGetPopularMovies] = useState();
+  const [getUpcomingMovies, setGetUpcomingMovies] = useState();
 
   function _getPopularMoviesFromApı() {
     fetch(
@@ -34,6 +37,17 @@ export default function HomePage() {
       });
   }
   _getPopularMoviesFromApı();
+
+  function _getUpcomingMoviesFromApı() {
+    fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=9f2d1368e54e609b6d793560018b878a&language=en-US&page=1`
+    )
+      .then((data) => data.json())
+      .then((data) => {
+        setGetUpcomingMovies(data.results);
+      });
+  }
+  _getUpcomingMoviesFromApı();
 
   return (
     <ScrollView style={{ backgroundColor: "#000000", height: "100%" }}>
@@ -47,6 +61,29 @@ export default function HomePage() {
             style={styles.movieSection.horizontalView}
           >
             {getPopularMovies?.map((movie, index) => {
+              return (
+                <MovieCard
+                  key={index}
+                  movieID={movie.id}
+                  title={movie.original_title}
+                  imgUrl={movie.poster_path}
+                />
+              );
+            })}
+          </ScrollView>
+        </View>
+      </View>
+
+      <View style={styles.movieSection}>
+        <Text style={styles.movieSection.title}>UpComing Movies</Text>
+        <View>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            style={styles.movieSection.horizontalView}
+          >
+            {getUpcomingMovies?.map((movie, index) => {
               return (
                 <MovieCard
                   key={index}
