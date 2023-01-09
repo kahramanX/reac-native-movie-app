@@ -12,6 +12,7 @@ import { setFavoriteMovieID } from "./store/actionSlice";
 
 export default function MovieCard({ title, imgUrl, movieID }) {
   const dispatch = useDispatch();
+  const { movieIDStore } = useSelector((state) => state.actionSlice);
 
   const styles = StyleSheet.create({
     container: {
@@ -44,6 +45,20 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       fontWeight: "800",
       color: "#ffffff",
     },
+    removeButton: {
+      backgroundColor: "#000000",
+      width: "100%",
+      padding: 8,
+      borderRadius: 4,
+      borderWidth: 2,
+      borderColor: "#db0000",
+      marginTop: 8,
+      alignItems: "center",
+    },
+    removeButtonText: {
+      fontWeight: "800",
+      color: "#db0000",
+    },
   });
 
   return (
@@ -61,31 +76,63 @@ export default function MovieCard({ title, imgUrl, movieID }) {
         {title}
       </Text>
 
-      <TouchableHighlight
-        style={styles.button}
-        onPress={() => {
-          Alert.alert(
-            "Do you want add to your favorites?",
-            `Movie ID: ${movieID}`,
-            [
-              {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-              },
-              {
-                text: "OK",
-                onPress: () => {
-                  console.log("selected : ", movieID);
-                  dispatch(setFavoriteMovieID(movieID));
-                  console.log("OK Pressed");
-                },
-              },
-            ]
+      <View>
+        {movieIDStore?.map((moviIdFromRedux) => {
+          return moviIdFromRedux == movieID ? (
+            <TouchableHighlight
+              style={styles.removeButton}
+              onPress={() => {
+                Alert.alert(
+                  "Do you want add to remove this movie from favorites?",
+                  `Movie ID: ${movieID}`,
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                    },
+                    {
+                      text: "OK",
+                      onPress: () => {
+                        console.log("selected : ", movieID);
+                        dispatch(setFavoriteMovieID(movieID));
+                        console.log("OK Pressed");
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.removeButtonText}>Remove</Text>
+            </TouchableHighlight>
+          ) : (
+            <TouchableHighlight
+              style={styles.button}
+              onPress={() => {
+                Alert.alert(
+                  "Do you want add to your favorites?",
+                  `Movie ID: ${movieID}`,
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                    },
+                    {
+                      text: "OK",
+                      onPress: () => {
+                        console.log("selected : ", movieID);
+                        dispatch(setFavoriteMovieID(movieID));
+                        console.log("OK Pressed");
+                      },
+                    },
+                  ]
+                );
+              }}
+            >
+              <Text style={styles.buttonText}>Add</Text>
+            </TouchableHighlight>
           );
-        }}
-      >
-        <Text style={styles.buttonText}>Add</Text>
-      </TouchableHighlight>
+        })}
+      </View>
     </View>
   );
 }
