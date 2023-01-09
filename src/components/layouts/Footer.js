@@ -1,7 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 function Footer() {
+  const navigation = useNavigation();
+
   const styles = StyleSheet.create({
     headerContainer: {
       flexDirection: "row",
@@ -20,8 +23,20 @@ function Footer() {
 
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerTitle}>Home</Text>
-      <Text style={styles.headerTitle}>Favs</Text>
+      <TouchableHighlight
+        onPress={() => {
+          navigation.navigate("HomeScreen");
+        }}
+      >
+        <Text style={styles.headerTitle}>Home</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => {
+          // navigation.navigate("FavoritesScreen");
+        }}
+      >
+        <Text style={styles.headerTitle}>Favs</Text>
+      </TouchableHighlight>
     </View>
   );
 }

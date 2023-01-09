@@ -25,7 +25,7 @@ export default function HomePage() {
   });
 
   return (
-    <View style={{ backgroundColor: "#000000", height: "100%" }}>
+    <ScrollView style={{ backgroundColor: "#000000", height: "100%" }}>
       <View style={styles.movieSection}>
         <Text style={styles.movieSection.title}>Popular Movies</Text>
         <View>
@@ -42,6 +42,6 @@ export default function HomePage() {
           </ScrollView>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
