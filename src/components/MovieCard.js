@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  Button,
   TouchableHighlight,
   Alert,
 } from "react-native";
@@ -22,7 +21,7 @@ export default function MovieCard({ title, imgUrl, movieID }) {
     image: { resizeMode: "cover" },
     text: {
       color: "#ffffff",
-      fontWeight: "400",
+      fontWeight: "500",
       width: 140,
       marginTop: 4,
     },
@@ -35,6 +34,10 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       marginTop: 8,
       alignItems: "center",
     },
+    buttonText: {
+      fontWeight: "800",
+      color: "#ffffff",
+    },
   });
 
   return (
@@ -42,28 +45,32 @@ export default function MovieCard({ title, imgUrl, movieID }) {
       <Image
         style={styles.image}
         source={{
-          uri: `https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg`,
+          uri: `https://image.tmdb.org/t/p/original/${imgUrl}`,
           width: "100%",
           height: 200,
         }}
       />
       <Text numberOfLines={2} style={styles.text}>
-        MOVİE TITe kanka aladın mıııfhduısa fdsuıaf ıdsa
+        {title}
       </Text>
 
       <TouchableHighlight
         style={styles.button}
         onPress={() => {
-          Alert.alert("Do you want add to your favorites?", "-", [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-            },
-            { text: "OK", onPress: () => console.log("OK Pressed") },
-          ]);
+          Alert.alert(
+            "Do you want add to your favorites?",
+            `Movie ID: ${movieID}`,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+              },
+              { text: "OK", onPress: () => console.log("OK Pressed") },
+            ]
+          );
         }}
       >
-        <Text>Add</Text>
+        <Text style={styles.buttonText}>Add</Text>
       </TouchableHighlight>
     </View>
   );
