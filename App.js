@@ -1,32 +1,45 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, SafeAreaView } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { StyleSheet, Text, SafeAreaView, View } from "react-native";
 import { useState } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Header from "./src/components/layouts/Header";
+import Footer from "./src/components/layouts/Footer";
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "./src/components/screens/homeScreen/HomeScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>Open up App.js to shhtart working on your app!</Text>
-      <StatusBar style="auto" />
-      <TextInput placeholder="useless placeholder" />
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => console.log("Pressed")}
-      >
-        Press me
-      </Button>
+  const Stack = createNativeStackNavigator();
 
-      <TextInput label="Email" />
-    </SafeAreaView>
+  const styles = StyleSheet.create({
+    container: {
+      width: "100%",
+      height: "100%",
+    },
+  });
+
+  return (
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <Stack.Navigator initialRouteName="HomeScreen">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: "Home Screen" }}
+          />
+          {/* <Stack.Screen
+            name="favorites"
+            component={HomeScreen}
+            options={{ title: "My Favorites" }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: "Movie" }}
+          /> */}
+        </Stack.Navigator>
+        <Footer />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
